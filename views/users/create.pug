@@ -1,0 +1,24 @@
+extends ../layouts/common
+
+block content
+	h1 Create User
+	if errors
+		each error in errors
+			.alert.alert-danger= error
+	form(action='/users/create', method="POST", enctype="multipart/form-data")
+		.form-group
+			label Name
+			input.form-control(name='name', type='text', placeholder='Enter name', value=values ? values.name : "")
+		.form-group
+			label Phone
+			input.form-control(name='phone', type='number', placeholder='Enter phone', value=values ? values.phone : "")
+		.form-group
+			label Email
+			input.form-control(name='email', type='email', placeholder='Enter email', value=values ? values.email : "")
+		.form-group
+			label Password
+			input.form-control(name='password', type='password', placeholder='Enter password')
+		.form-group
+			label Avatar
+			input.form-control-file(name='avatar', type='file')
+		button.btn.btn-primary Create
