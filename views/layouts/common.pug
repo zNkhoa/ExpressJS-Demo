@@ -1,0 +1,42 @@
+html
+	head
+		link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm", crossorigin="anonymous")
+		link(rel="stylesheet", href="/styles/custom.css")
+		link(href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css', rel='stylesheet')
+		script(src='https://code.jquery.com/jquery-3.4.1.min.js')
+		script.
+			$(function(){
+				$('.navbar-nav li a').filter(function(){return this.href==location.href}).parent().addClass('active').siblings().removeClass('active')
+				$('.navbar-nav li a').click(function(){
+					$(this).parent().addClass('active').siblings().removeClass('active')	
+				});
+			});
+	body
+		block navbar
+			nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+				a.navbar-brand(href='/') ExpressJS
+				button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+					span.navbar-toggler-icon
+				#navbarSupportedContent.collapse.navbar-collapse
+					ul.navbar-nav.mr-auto
+						li.nav-item
+							a.nav-link(href='/users')
+								i.fas.fa-users
+								| 	  User
+						li.nav-item
+							a.nav-link(href='/products') 
+								i.fas.fa-boxes
+								| 	  Product
+						li.nav-item
+							a.nav-link(href='/cart')
+								i.fas.fa-shopping-cart
+								|     Shopping Cart
+								span.badge.badge-warning.ml-2= session.cart ? session.cart.totalQty : 0
+				p(style="color:white")= user ? user.name : ""
+
+		.container.pt-5
+			block content
+
+		// script
+		// 	include ../javascript/jquery.js
+		
