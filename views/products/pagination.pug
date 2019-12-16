@@ -1,0 +1,36 @@
+
+nav(aria-label='Page navigation example')
+	- if(pages > 0) {
+		ul.pagination.mb-0
+			- if(current == 1) {
+				li.page-item.disabled
+			- } else {
+				li.page-item
+					a.page-link(href='/products?page=' + (current - 1), aria-label='Previous')
+						span(aria-hidden='true') &laquo;
+						span.sr-only Previous
+			- }
+			- var i = (current > 3 ? current - 2 : 1)
+			// - if (i !== 1)
+			// 	li.page-item.disabled ...
+			- for (; i <= (current + 2) && i <= pages; i++ ) {
+				- if(i == current) {
+					li.page-item.active
+						a.page-link(href='/products?page=' + i)= i
+				- } else {
+					li.page-item
+						a.page-link(href='/products?page=' + i)= i
+				- }
+				// - if(i == (current + 2) && i < pages){
+				// 	li.page-item.disabled ...
+				// - }
+			- }
+			- if (current == pages) {
+				li.page-item.disabled
+			- } else {
+				li.page-item
+					a.page-link(href='/products?page=' + pages, aria-label='Next')
+						span(aria-hidden='true') &raquo;
+						span.sr-only Next
+			- }			
+	- }
