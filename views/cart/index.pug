@@ -1,0 +1,36 @@
+extends ../layouts/common
+
+block content
+	.row.d-flex.justify-content-center
+		.col-sm-6.col-md-6.col-md-offset3.col-sm-offset-3
+		
+			each product in products
+				.row.mb-3
+						img(src=product.item.image)
+						ul.list-group
+							li.list-group-item
+								strong Name: 
+								span.ml-3= product.item.name
+							li.list-group-item
+								strong Quantity:
+								span.badge.badge-secondary.ml-3= product.qty
+							li.list-group-item
+								strong Price:
+								span.badge.badge-success.ml-3= product.price
+									span $
+							li.list-group-item
+								.btn-group
+									button.btn.btn-info.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+										| Action
+									.dropdown-menu
+										a.dropdown-item(href="#") Remove
+
+	.row.d-flex.justify-content-center.mb-3
+		.col-sm-6.col-md-6.col-md-offset3.col-sm-offset-3
+			strong Total
+			span.badge.badge-success.ml-3= totalPrice
+				span $
+
+	.row.d-flex.justify-content-center
+		.col-sm-6.col-md-6.col-md-offset3.col-sm-offset-3
+			.btn.btn-success CHECKOUT
